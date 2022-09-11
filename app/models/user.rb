@@ -8,6 +8,15 @@ class User < ApplicationRecord
                     uniqueness: true,
                     format: { with: /\d{7,16}/ }
 
+  validates :role, presence: true
+
+  enum role: {
+         admin: 0,
+         patient: 1,
+         doctor: 2
+       },
+       _default: :patient
+
   before_validation :format_phone
 
   def format_phone
