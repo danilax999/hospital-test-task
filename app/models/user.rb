@@ -7,6 +7,9 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  validates :name, presence: true,
+                   length: { minimum: 3 }
+
   validates :phone, presence: true,
                     uniqueness: true,
                     format: { with: /\d{7,16}/ }

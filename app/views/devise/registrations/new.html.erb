@@ -8,8 +8,13 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field my-1">
+        <%= f.label :name, class: 'form-label' %>
+        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="field my-1">
         <%= f.label :phone, class: 'form-label' %>
-        <%= f.telephone_field :phone, autofocus: true, autocomplete: 'tel', class: 'form-control' %>
+        <%= f.telephone_field :phone, autocomplete: 'tel', class: 'form-control' %>
       </div>
 
       <div class="field my-1">
