@@ -12,6 +12,10 @@
 
   <body>
     <%= render 'layouts/navbar' %>
-    <%= yield %>
+    <div class="bg-main d-flex justify-content-center w-100">
+      <main class="main w-100" style="max-width: 1150px;">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
