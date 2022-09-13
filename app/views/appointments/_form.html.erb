@@ -1,0 +1,25 @@
+<%= form_with(model: appointment) do |f| %>
+  <% if appointment.errors.any? %>
+    <%# <div style="color: red"> %>
+      <%# <h2> %>
+        <%# pluralize(appointment.errors.count, "error") %> <%# prohibited this appointment from being saved: %>
+      <%# </h2> %>
+
+    <div>
+      <% appointment.errors.each do |error| %>
+        <div class="alert alert-danger"><%= error.full_message %></div>
+      <% end %>
+    </div>
+    <%# </div> %>
+  <% end %>
+
+  <div class="field my-1">
+    <%= f.label :doctor_id, class: 'form-label' %>
+    <%= f.number_field :doctor_id, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="actions mt-lg-2 d-flex justify-content-between w-100">
+    <%= link_to "Back", appointments_path, class: 'btn btn-primary' %>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+<% end %>

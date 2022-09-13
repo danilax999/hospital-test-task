@@ -38,19 +38,9 @@ class User < ApplicationRecord
   # +doctor+ must be +User+ or user_id with role 'doctor'.
   # Returns created appointment.
   #
-  def take_an_appointment!(doctor)
-    raise StandardError if role != 'patient'
-
-    doctor = User.find doctor if doctor.is_a? Integer
-    raise StandardError if doctor.role != 'doctor'
-
-    Appointment.create patient: self, doctor:
-  end
-
   def take_an_appointment(doctor)
-    take_an_appointment! doctor
-  rescue StandardError
-    nil
+    doctor = User.find doctor if doctor.is_a? Integer
+    Appointment.create patient: self, doctor:
   end
 
   def email_required?

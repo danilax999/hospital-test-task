@@ -1,0 +1,35 @@
+<% collapse_id = "appointment-collapse-#{appointment.id}" %>
+<div class="card my-2">
+  <div class="card-body py-1">
+    <div class="card-title mb-0 d-flex justify-content-between align-items-center">
+      <div class="d-flex d-row">
+        <div class="mx-1"><%= appointment.doctor.name %></div>
+        <div class="mx-1">+<%= appointment.doctor.phone %></div>
+      </div>
+      <div class="d-flex flex-row h-100 align-items-center">
+        <h6 class="m-0 p-0 me-2">
+          <% if appointment.closed %>
+            <span class="text-success">closed</span>
+          <% else %>
+            <span class="text-danger">opened</span>
+          <% end %>
+        </h6>
+        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#<%= collapse_id %>" aria-expanded="false" aria-controls="<%= collapse_id %>">
+          more
+        </button>
+      </div>
+    </div>
+    <div class="collapse" id="<%= collapse_id %>">
+      <p class="card-text mt-2">
+        <% if appointment.closed %>
+          <%= appointment.recommendation %>
+        <% else %>
+          <div class="w-100 d-flex justify-content-end">
+            <%= button_to 'Delete', appointment_url(appointment), method: :delete, form_class: 'zero-size-form', class: 'btn btn-danger' %>
+          </div>
+        <% end %>
+      </p>
+    </div>
+    <%# link_to "Show this appointment", a %>
+  </div>
+</div>

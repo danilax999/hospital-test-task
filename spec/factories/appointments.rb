@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :appointment do
-    patient { nil }
-    doctor { nil }
+    patient { build :patient }
+    doctor { build :doctor }
     closed { false }
     recommendation { "MyText" }
   end
