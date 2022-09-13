@@ -1,0 +1,32 @@
+<%= render 'layouts/alerts' %>
+
+<div class="mt-2">
+  <h3 class="m-0 p-2">Doctors</h3>
+
+  <div class="d-flex w-100 justify-content-center">
+    <table id="doctors" class="table table-stripped w-100">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @doctors.each do |doctor| %>
+          <tr class="align-middle">
+            <td><%= doctor.name %></td>
+            <td>+<%= doctor.phone %></td>
+            <td>
+              <%= button_to 'Book appointment', {
+                controller: 'appointments',
+                action: 'create',
+                appointment: { doctor_id: doctor.id }
+              }, method: :post, form_class: 'zero-size-form', class: 'btn btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

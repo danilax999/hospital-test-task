@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   }
 
   root 'home#index'
-  resources :appointments
+  resources :appointments, only: %i[index create update destroy]
+  resources :doctors, only: %i[index]
 end
