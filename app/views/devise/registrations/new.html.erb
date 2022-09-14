@@ -2,7 +2,7 @@
   <div class="form-container w-100">
     <h3 class="w-100 text-center">Sign up</h3>
 
-    <%= render 'layouts/alerts' %>
+    <%= render 'shared/alerts' %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
