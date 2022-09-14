@@ -9,6 +9,7 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Phone</th>
+          <th scope="col">Categories</th>
           <th></th>
         </tr>
       </thead>
@@ -17,6 +18,7 @@
           <tr class="align-middle">
             <td><%= doctor.name %></td>
             <td>+<%= doctor.phone %></td>
+            <td><%= doctor.categories.map(&:name).join(', ') %></td>
             <td>
               <%= button_to 'Book appointment', {
                 controller: 'appointments',
