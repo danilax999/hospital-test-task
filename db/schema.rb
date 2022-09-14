@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_11_220556) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_154025) do
   create_table "appointments", force: :cascade do |t|
     t.integer "patient_id", null: false
     t.integer "doctor_id", null: false
@@ -20,6 +20,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_220556) do
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
+  create_table "categories", id: false, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "doctor_categories", force: :cascade do |t|
+    t.integer "doctor_id"
+    t.string "category_name", null: false
+    t.index ["category_name"], name: "index_doctor_categories_on_category_name"
+    t.index ["doctor_id"], name: "index_doctor_categories_on_doctor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +52,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_220556) do
 
   add_foreign_key "appointments", "users", column: "doctor_id"
   add_foreign_key "appointments", "users", column: "patient_id"
+  add_foreign_key "doctor_categories", "users", column: "doctor_id"
 end

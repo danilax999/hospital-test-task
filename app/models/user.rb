@@ -7,6 +7,18 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  has_many :doctor_categories, foreign_key: 'doctor_id'
+  has_many :categories, through: :doctor_categories
+
+  enum role: {
+         admin: 0,
+         patient: 1,
+         doctor: 2
+       },
+       _default: :patient
+
+  # has_many :appointments, ->(user) { where user.role => user.id }
+
   validates :name, presence: true,
                    length: { minimum: 3 }
 
@@ -15,13 +27,6 @@ class User < ApplicationRecord
                     format: { with: /\d{7,16}/ }
 
   validates :role, presence: true
-
-  enum role: {
-         admin: 0,
-         patient: 1,
-         doctor: 2
-       },
-       _default: :patient
 
   before_validation :format_phone
 
@@ -34,7 +39,7 @@ class User < ApplicationRecord
   end
 
   ##
-  # Creates an appointment with +doctor+.
+  # Creates an +Appointment+ with +doctor+.
   # +doctor+ must be +User+ or user_id with role 'doctor'.
   # Returns created appointment.
   #
