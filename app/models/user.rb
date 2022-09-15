@@ -38,6 +38,14 @@ class User < ApplicationRecord
     Appointment.where(role => id)
   end
 
+  def patient?
+    role == 'patient'
+  end
+
+  def doctor?
+    role == 'doctor'
+  end
+
   ##
   # Creates an +Appointment+ with +doctor+.
   # +doctor+ must be +User+ or user_id with role 'doctor'.

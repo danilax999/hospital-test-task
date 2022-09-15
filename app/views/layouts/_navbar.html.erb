@@ -2,7 +2,9 @@
   <div class="container-fluid">
     <div class="navbar-nav d-flex w-100 justify-content-between">
       <div id="nav-left" class="d-flex flex-row align-items-center">
-        <%= nav_link_btn 'Doctors', doctors_path %>
+        <% if can? :read, User.new(role: 'doctor') %>
+          <%= nav_link_btn 'Doctors', doctors_path %>
+        <% end %>
         <%= nav_link_btn 'Appointments', appointments_path %>
       </div>
       <div id="nav-center">

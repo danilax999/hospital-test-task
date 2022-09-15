@@ -3,8 +3,9 @@
   <div class="card-body py-1">
     <div class="card-title mb-0 d-flex justify-content-between align-items-center">
       <div class="d-flex d-row">
-        <div class="mx-1"><%= appointment.doctor.name %></div>
-        <div class="mx-1">+<%= appointment.doctor.phone %></div>
+        <% user = current_user.patient? ? appointment.doctor : appointment.patient %>
+        <div class="mx-1"><%= user.name %></div>
+        <div class="mx-1">+<%= user.phone %></div>
         <div class="mx-1"><%= appointment.updated_at.strftime("%Y-%m-%d %H:%M") %></div>
       </div>
       <div class="d-flex flex-row h-100 align-items-center">
@@ -22,13 +23,29 @@
     </div>
     <div class="collapse" id="<%= collapse_id %>">
       <p class="card-text mt-2">
-        <% if appointment.closed %>
-          <%= appointment.recommendation %>
-        <% else %>
+      <% if can? :edit, appointment %>
+        <%= form_with model: appointment, method: :put do |f| %>
+          <%= f.label :recommendation, class: 'form-label' %>
+          <%= f.text_area :recommendation, class: 'form-control' %>
+          <div class="w-100 d-flex justify-content-end">
+            <%= f.submit 'Submit', class: 'btn btn-primary mt-2' %>
+          </div>
+        <% end %>
+      <% else %>
+        <% if can?(:read, appointment) && appointment.closed %>
+          <h6>Recommendation</h6>
+          <div class="container">
+            <%= appointment.recommendation %>
+          </div>
+        <% end %>
+
+        <% if can?(:destroy, appointment) && !appointment.closed %>
           <div class="w-100 d-flex justify-content-end">
             <%= button_to 'Delete', appointment_url(appointment), method: :delete, form_class: 'zero-size-form', class: 'btn btn-danger' %>
           </div>
         <% end %>
+
+      <% end %>
       </p>
     </div>
     <%# link_to "Show this appointment", a %>
