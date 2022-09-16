@@ -1,6 +1,6 @@
 <%= render 'shared/alerts' %>
 
-<div class="mt-2">
+<div class="mt-2 w-100" style="max-width: 700px;">
   <div class="d-flex justify-content-between w-100">
     <div class="d-flex align-items-center">
       <h3 class="m-0 p-0 ms-2">Appointments</h3>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="d-flex w-100 justify-content-center">
+  <div class="d-flex flex-column w-100 justify-content-center">
     <div id="appointments" class="w-100">
       <% @appointments.each do |appointment| %>
         <%= render 'appointment', appointment: %>

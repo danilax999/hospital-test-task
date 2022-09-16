@@ -5,7 +5,14 @@
         <% if can? :read, User.new(role: 'doctor') %>
           <%= nav_link_btn 'Doctors', doctors_path %>
         <% end %>
-        <%= nav_link_btn 'Appointments', appointments_path %>
+
+        <% if can? :read, Appointment %>
+          <%= nav_link_btn 'Appointments', appointments_path %>
+        <% end %>
+
+        <% if can? :read, Category %>
+          <%= nav_link_btn 'Categories', categories_path %>
+        <% end %>
       </div>
       <div id="nav-center">
       </div>

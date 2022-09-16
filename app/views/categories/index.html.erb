@@ -1,0 +1,15 @@
+
+<div class="w-100" style="max-width: 700px;">
+  <%= render 'shared/alerts' %>
+  <div class="mt-2">
+  <h3 class="m-0 p-0 ms-2">Categories</h3>
+
+    <div class="d-flex w-100 justify-content-center">
+      <div id="categories" class="w-100">
+        <% @categories.each do |category| %>
+          <%= render 'category', category: %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

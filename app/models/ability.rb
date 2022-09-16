@@ -14,6 +14,10 @@ class Ability
     elsif user.doctor?
       can :update, Appointment, doctor: user
       can :edit, Appointment
+
+      can :read, Category
+      can :join_to, Category
+      can :leave, Category
     end
   end
 end

@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!
-  rescue_from CanCan::AccessDenied, with: :access_denied
 
   # GET /appointments or /appointments.json
   def index
@@ -38,7 +37,7 @@ class AppointmentsController < ApplicationController
 
   # PATCH/PUT /appointments/1 or /appointments/1.json
   def update
-    @appointment = Appointment.find params[:id]
+    @appointment = find_appointment
 
     authorize! :update, @appointment
 
@@ -54,7 +53,7 @@ class AppointmentsController < ApplicationController
 
   # DELETE /appointments/1 or /appointments/1.json
   def destroy
-    @appointment = Appointment.find params[:id]
+    @appointment = find_appointment
 
     authorize! :destroy, @appointment
 
@@ -78,4 +77,7 @@ class AppointmentsController < ApplicationController
     render_error :forbidden
   end
 
+  def find_appointment
+    Appointment.find params[:id]
+  end
 end
