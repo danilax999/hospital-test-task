@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DoctorCategory < ApplicationRecord
   belongs_to :doctor, class_name: 'User'
   belongs_to :category, foreign_key: 'category_name'

@@ -1,0 +1,12 @@
+require: rubocop-rails
+
+Layout/LineLength:
+  Max: 81
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - config/application.rb

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -32,7 +34,7 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   def format_phone
-    self.phone = phone.chars.filter { |c| '0' <= c && c <= '9' }.join
+    self.phone = phone.chars.filter { |c| c >= '0' && c <= '9' }.join
   end
 
   def appointments

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PhoneValidator < ActiveModel::Validator
   def validate(record)
     return if (regexp =~ record.phone)&.zero?
@@ -24,7 +26,7 @@ class PhoneValidator < ActiveModel::Validator
   end
 
   def tel_prefix
-    '\d{1,3}' + sep
+    "\\d{1,3}#{sep}"
   end
 
   def line_number
