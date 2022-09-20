@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class PhoneValidator < ActiveModel::Validator
-  def validate(record)
-    return if (regexp =~ record.phone)&.zero?
+class PhoneValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    return if (regexp =~ value)&.zero?
 
-    record.errors.add :phone, 'has unsupported format'
+    record.errors.add attribute, 'has unsupported format'
   end
 
   protected
@@ -18,7 +18,7 @@ class PhoneValidator < ActiveModel::Validator
   end
 
   def country_code
-    '\+*\d{1,4}'
+    "\\+*\\d{1,4}#{sep}"
   end
 
   def area_code
@@ -26,10 +26,10 @@ class PhoneValidator < ActiveModel::Validator
   end
 
   def tel_prefix
-    "\\d{1,3}#{sep}"
+    "\\d{3,4}#{sep}"
   end
 
   def line_number
-    '\d{1,4}'
+    '\d{3,4}'
   end
 end

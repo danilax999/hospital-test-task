@@ -38,6 +38,11 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :phone }
     it { should validate_uniqueness_of(:phone).case_insensitive }
     it { should validate_presence_of :role }
-    # TODO: phone validation
+
+    it { should_not allow_value('abcdefg').for(:phone) }
+    it { should_not allow_value('+3200').for(:phone) }
+    it { should allow_value('380022123432').for(:phone) }
+    it { should allow_value('+38 002 212 34 32').for(:phone) }
+    it { should allow_value('+38 002-212-34-32').for(:phone) }
   end
 end
