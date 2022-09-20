@@ -10,16 +10,19 @@ class Appointment < ApplicationRecord
   private
 
   def patient_role_validation
-    return if patient&.role == 'patient'
-
-    # errors.add :patient, "Patient's role must be 'patient', got '#{patient.role}'."
-    errors.add :user, "with id #{patient_id} is not patient"
+    user_role_validation :patient, patient
   end
 
   def doctor_role_validation
-    return if doctor&.role == 'doctor'
+    user_role_validation :doctor, doctor
+  end
 
-    # errors.add :doctor, "Doctor's role must be 'doctor', got '#{doctor.role}'."
-    errors.add :user, "with id #{patient_id} is not doctor"
+  def user_role_validation(field_name, user = nil, role: nil)
+    user ||= send field_name
+    role ||= field_name
+
+    return if user.nil? || user.role == role
+
+    errors.add field_name, "must have role '#{role}', got '#{user.role}'"
   end
 end

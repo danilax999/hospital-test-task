@@ -91,4 +91,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # RSpec::Matchers.define :validate_phone_for do |_record|
+  #   match do |field|
+  #
+  #   end
+  #   failure_message do |field|
+  #     ""
+  #   end
+  # end
 end

@@ -24,11 +24,12 @@ class User < ApplicationRecord
 
   validates :phone, presence: true,
                     uniqueness: true,
-                    format: { with: /\d{7,16}/ }
+                    phone: true
+  # format: { with: /\d{7,16}/ }
+
+  before_save :format_phone
 
   validates :role, presence: true
-
-  before_validation :format_phone
 
   def format_phone
     self.phone = phone.chars.filter { |c| '0' <= c && c <= '9' }.join
