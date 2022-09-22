@@ -85,3 +85,5 @@ gem 'sass-rails', '~> 6.0'
 gem 'devise', '~> 4.8'
 
 gem 'cancancan', '~> 3.4'
+
+gem 'activeadmin', '~> 2.13'

@@ -7,7 +7,8 @@ class User < ApplicationRecord
          :registerable,
          # :recoverable,
          :rememberable,
-         :validatable
+         :validatable,
+         authentication_keys: [:phone]
 
   has_many :doctor_categories, foreign_key: 'doctor_id'
   has_many :categories, through: :doctor_categories
