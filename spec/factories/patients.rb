@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :patient, class: User do
     name { 'John Doe' }
-    phone { 44_444_444 }
+    phone { '444444444' }
     role { 'patient' }
     password { 'password' }
   end
