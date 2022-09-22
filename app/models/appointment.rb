@@ -41,6 +41,6 @@ class Appointment < ApplicationRecord
   def appointment_exists_validation
     return unless Appointment.exists? patient:, doctor:, closed: false
 
-    errors add :appointment, 'already exists'
+    errors.add :appointment, 'already exists'
   end
 end

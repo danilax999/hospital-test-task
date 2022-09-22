@@ -33,6 +33,7 @@ class AppointmentsController < ApplicationController
       redirect_to action: :index
     else
       flash[:alert] = 'Appointment create error.'
+      @errors = @appointment.errors
       render_error :unprocessable_entity
     end
   end
@@ -48,7 +49,8 @@ class AppointmentsController < ApplicationController
       redirect_to action: :index
     else
       # redirect_to action: :edit, status: :unprocessable_entity
-      flash[:notice] = 'Appointment update error.'
+      flash[:alert] = 'Appointment update error.'
+      @errors = @appointment.errors
       render_error :unprocessable_entity
     end
   end
@@ -64,6 +66,7 @@ class AppointmentsController < ApplicationController
       redirect_to action: :index
     else
       notice[:alert] = 'Appointment delete error.'
+      @errors = @appointment.errors
       render_error :unprocessable_entity
     end
   end

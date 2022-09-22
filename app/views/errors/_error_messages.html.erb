@@ -1,0 +1,6 @@
+<% errors.each do |e| %>
+  <div class="alert alert-danger my-2 w-100">
+    <%# <span class="glyphicon glyphicon-exclamation-sign"></span> %>
+    <%= e.full_message %>
+  </div>
+<% end %>
