@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
       flash[:notice] = 'Appointment was successfully created.'
       redirect_to action: :index
     else
-      flash[:notice] = 'Appointment create error.'
+      flash[:alert] = 'Appointment create error.'
       render_error :unprocessable_entity
     end
   end

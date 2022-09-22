@@ -37,5 +37,7 @@ module Hospital
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     # config.logger = Logger.new $stdout
+
+    config.x.doctor.max_appointments = 10
   end
 end
