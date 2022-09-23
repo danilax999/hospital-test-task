@@ -9,8 +9,8 @@ class Appointment < ApplicationRecord
 
   validate :patient_role_validation,
            :doctor_role_validation,
-           :doctor_max_appointments_validation,
-           :appointment_exists_validation
+           :doctor_max_appointments_validation
+  validate :appointment_exists_validation, on: :create
 
   private
 
