@@ -1,6 +1,6 @@
 <div class="d-flex flex-column align-items-center w-100">
   <%= render 'shared/alerts' %>
-  <% if @error %>
+  <% if @errors %>
     <%= render 'errors/error_messages', errors: @errors %>
   <% end %>
   <h2><%= header %></h2>
